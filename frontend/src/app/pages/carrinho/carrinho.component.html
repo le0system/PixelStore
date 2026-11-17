@@ -1,0 +1,15 @@
+<div class="site-width">
+  <div class="breadcrumb"><a routerLink="/home">Início</a> / <strong>Meu carrinho</strong></div>
+  <div class="page-heading"><span class="eyebrow">SUA SELEÇÃO</span><h1>Meu carrinho <span class="cart-qty">({{cart.count()}})</span></h1><p>Confira os jogos escolhidos antes de finalizar.</p></div>
+  @if (loading) { <p class="loading-line" role="status">Atualizando carrinho...</p> }
+  @if (error) { <p class="error-message" role="alert">{{error}}</p> }
+  @if (notice) { <p class="notice" role="status">{{notice}}</p> }
+  @if (cart.count() === 0) {
+    <div class="empty-state"><div class="empty-icon">🛒</div><h2>Seu carrinho está vazio</h2><p>A aventura começa no catálogo. Escolha um jogo e volte aqui para revisar seu pedido.</p><a routerLink="/catalogo" class="btn btn-primary">Explorar jogos ↗</a></div>
+  } @else {
+    <div class="cart-layout"><section class="cart-items panel"><div class="cart-item-title"><h3>Itens selecionados</h3><span>{{cart.count()}} jogo(s)</span></div>
+      @for (item of cart.items(); track item.id) { <div class="cart-item"><a [routerLink]="['/jogo', item.id]" class="cart-cover"><img [src]="imageUrl(item.cover)" [alt]="'Arte de ' + item.title"></a><div class="item-meta"><a [routerLink]="['/jogo', item.id]" class="item-title">{{item.title}}</a><p>{{item.platform}} • {{item.genre}}</p><button class="remove-btn" type="button" (click)="cart.remove(item.id)">× Remover</button></div><strong class="item-price">{{item.priceCents / 100 | currency:'BRL'}}</strong></div> }
+      <a routerLink="/catalogo" class="link-accent continue-link">← Continuar comprando</a>
+    </section><aside class="summary-card panel"><h3>Resumo do pedido</h3><div class="divider"></div><div class="summary-row"><span>Subtotal ({{cart.count()}} jogos)</span><strong>{{cart.totalCents() / 100 | currency:'BRL'}}</strong></div><div class="summary-row"><span>Entrega</span><strong>Digital</strong></div><div class="divider"></div><div class="summary-row total"><span>Total</span><strong>{{cart.totalCents() / 100 | currency:'BRL'}}</strong></div><a routerLink="/checkout" class="btn btn-primary checkout-btn">Continuar para checkout →</a><p class="muted disclaimer">Pagamento exclusivamente demonstrativo. Nenhuma cobrança será feita.</p></aside></div>
+  }
+</div>

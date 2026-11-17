@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 780" width="680" height="780">
+ <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#346e6d"/><stop offset=".55" stop-color="#8fd4a9"/><stop offset="1" stop-color="#346e6d"/></linearGradient><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#080815" stop-opacity="0"/><stop offset="1" stop-color="#080815" stop-opacity=".96"/></linearGradient></defs>
+ <rect width="680" height="780" fill="url(#bg)"/><g><circle cx="530" cy="170" r="100" fill="#fef4ad" opacity=".7"/><path d="M0 420 Q200 340 340 450T680 400V780H0Z" fill="#36765a"/><path d="M160 420V230l130-110 130 110v190Z" fill="#346e6d" stroke="#fef4ad" stroke-width="9"/><rect x="265" y="280" width="70" height="140" fill="#fef4ad" opacity=".55"/></g>
+ <path d="M0 700 120 620 270 680 450 590 680 650V780H0Z" fill="#346e6d" opacity=".36"/>
+ <rect x="0" y="440" width="680" height="340" fill="url(#fade)"/>
+ <text x="40" y="53" font-family="Arial,sans-serif" fill="#fff" font-weight="800" font-size="17" letter-spacing="5" opacity=".75">PIXEL STORE</text>
+ <rect x="38" y="598" width="65" height="5" rx="2" fill="#fef4ad"/>
+ <text x="38" y="661" font-family="Arial, sans-serif" font-weight="900" font-size="47" letter-spacing="1" fill="#fff">STARDEW</text>
+ <text x="40" y="706" font-family="Arial,sans-serif" font-weight="700" font-size="32" letter-spacing="2" fill="#fef4ad">VALLEY</text>
+ <text x="40" y="754" font-family="Arial,sans-serif" font-size="12" fill="#eee" letter-spacing="2" opacity=".7">ARTE ILUSTRATIVA • DEMONSTRAÇÃO</text></svg>

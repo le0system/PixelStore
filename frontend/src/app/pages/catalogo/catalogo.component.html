@@ -1,0 +1,29 @@
+<div class="site-width">
+  <div class="breadcrumb">Início / <strong>Catálogo</strong></div>
+  <div class="page-heading"><span class="eyebrow">EXPLORE A LOJA</span><h1>Encontre seu próximo jogo.</h1><p>Filtre por plataforma, pesquise por título e descubra algo novo.</p></div>
+  <div class="catalog-layout">
+    <aside class="filter-panel panel">
+      <h3>Filtros <span>⌘</span></h3>
+      <div class="divider"></div>
+      <strong class="filter-label">PLATAFORMA</strong>
+      <div class="platform-filters">
+        <button type="button" [class.active]="!selectedPlatform" (click)="selectPlatform('')">Todas <span>→</span></button>
+        @for (platform of platforms; track platform) { <button type="button" [class.active]="selectedPlatform === platform" (click)="selectPlatform(platform)">{{platform}} <span>→</span></button> }
+      </div>
+      <div class="divider"></div>
+      <p class="muted filter-tip">Dica: escolha uma plataforma para visualizar somente os jogos compatíveis.</p>
+      <button type="button" class="reset-filters" (click)="clear()">↺ Limpar filtros</button>
+    </aside>
+    <div class="catalog-content">
+      <form class="catalog-toolbar" (ngSubmit)="apply()">
+        <div class="catalog-search"><span>⌕</span><input type="search" name="q" [(ngModel)]="searchTerm" placeholder="Busque um jogo ou gênero..." aria-label="Buscar no catálogo"><button type="submit" aria-label="Pesquisar">Buscar</button></div>
+        <label class="sort-label">Ordenar por <select name="sort" [(ngModel)]="sort" (change)="apply()"><option value="featured">Destaques</option><option value="recent">Mais recentes</option><option value="title">Nome A–Z</option><option value="price_asc">Menor preço</option><option value="price_desc">Maior preço</option></select></label>
+      </form>
+      <div class="results-heading"><div><strong>{{selectedPlatform || 'Todos os jogos'}}</strong><span> {{loading ? 'Carregando...' : games.length + ' resultado(s)'}}</span></div>@if (selectedPlatform || searchTerm) { <button type="button" (click)="clear()">Remover filtros ×</button> }</div>
+      @if (loading) { <p class="loading-line">Buscando jogos...</p> }
+      @else if (error) { <div class="error-message">{{error}}</div> }
+      @else if (games.length === 0) { <div class="empty-state"><div class="empty-icon">⌕</div><h2>Nenhum jogo encontrado</h2><p>Tente pesquisar outro título ou alterar a plataforma.</p><button type="button" class="btn btn-outline" (click)="clear()">Ver todos os jogos</button></div> }
+      @else { <div class="catalog-grid">@for (game of games; track game.id) { <app-game-card [game]="game"/> }</div> }
+    </div>
+  </div>
+</div>

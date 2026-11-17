@@ -1,0 +1,13 @@
+<div class="auth-wrap site-width">
+  <section class="auth-side"><div class="side-symbol">✦</div><span class="eyebrow">READY, PLAYER ONE?</span><h1>O jogo fica melhor com você aqui.</h1><p>Entre na sua conta, descubra novos títulos e continue sua jornada de onde parou.</p><div class="side-pills"><span>PlayStation</span><span>Xbox</span><span>Nintendo</span><span>PC</span></div></section>
+  <div class="auth-card panel"><div class="auth-brand"><img src="assets/logo.svg" alt="" width="40" height="40"><strong>PIXEL<span>STORE</span></strong></div><span class="eyebrow">BEM-VINDO DE VOLTA</span><h2>Entre na sua conta</h2><p class="muted intro">Acesse seus pedidos e continue explorando.</p>
+    @if (error) { <p class="error-message" role="alert">{{error}}</p> }
+    <form (ngSubmit)="submit()" #loginForm="ngForm">
+      <label class="field-label">E-mail<input class="input-field" type="email" name="email" [(ngModel)]="email" autocomplete="email" email required placeholder="seuemail@exemplo.com"></label>
+      <label class="field-label">Senha<input class="input-field" type="password" name="password" [(ngModel)]="password" autocomplete="current-password" required placeholder="••••••••"></label>
+      <button class="btn btn-primary submit-btn" type="submit" [disabled]="loginForm.invalid || busy">{{busy ? 'Entrando...' : 'Entrar na Pixel Store →'}}</button>
+    </form>
+    <p class="auth-switch">Ainda não tem conta? <a routerLink="/cadastro" class="link-accent">Criar conta grátis</a></p>
+    <div class="auth-note">Ambiente educacional. Use uma senha exclusiva para testes.</div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+# dependências e builds
+node_modules/
+.angular/
+dist/
+coverage/
+*.log
+.DS_Store
+# banco de dados local: gerado ao iniciar a API
+backend/data/*.sqlite
+backend/data/*.sqlite-shm
+backend/data/*.sqlite-wal
+# arquivos de ambiente e IDE
+.env
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+node_modules/
+dist/
+.angular/
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+*.sqlite
+*.sqlite3

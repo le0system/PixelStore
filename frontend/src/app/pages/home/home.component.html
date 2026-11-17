@@ -1,0 +1,35 @@
+<div class="site-width">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="hero-label"><span class="live-dot"></span> O SEU UNIVERSO GAMER</div>
+      <h1>Seu próximo <span>universo</span> começa aqui.</h1>
+      <p>Dos clássicos aos lançamentos. Encontre seu próximo jogo favorito em uma loja feita para quem vive cada partida.</p>
+      <div class="hero-actions"><a class="btn btn-primary" routerLink="/catalogo">Explorar jogos <span>↗</span></a><a class="btn btn-outline" routerLink="/catalogo" [queryParams]="{platform:'PC'}">Ver jogos de PC</a></div>
+      <div class="hero-stats"><div><strong>{{totalGames}}</strong><span>Opções no catálogo</span></div><div><strong>04</strong><span>Plataformas</span></div><div><strong>∞</strong><span>Possibilidades</span></div></div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      <div class="hero-gamepad">✦</div>
+      <div class="float-tile tile-one"><span>▶</span> PLAY YOUR STORY</div>
+      <div class="float-tile tile-two"><span>✳</span> LEVEL UP</div>
+      <div class="visual-caption">EXPLORE • ESCOLHA • JOGUE</div>
+    </div>
+  </section>
+  <div class="trust-strip"><span><span class="trust-icon">◎</span> 4 plataformas</span><span><span class="trust-icon">▣</span> Catálogo organizado</span><span><span class="trust-icon">◈</span> Interface intuitiva</span><span><span class="trust-icon">✦</span> Projeto acadêmico</span></div>
+  <section class="section">
+    <div class="section-heading"><div><span class="eyebrow">ESCOLHA SEU TIME</span><h2>Qual é a sua plataforma?</h2></div><a class="link-accent" routerLink="/catalogo">Ver catálogo completo ↗</a></div>
+    <div class="platform-grid">
+      <a routerLink="/catalogo" [queryParams]="{platform:'PlayStation'}" class="platform-card ps"><span class="platform-symbol">△ ○ × □</span><strong>PlayStation</strong><small>Explorar jogos ↗</small></a>
+      <a routerLink="/catalogo" [queryParams]="{platform:'Xbox'}" class="platform-card xbox"><span class="platform-symbol">✕</span><strong>Xbox</strong><small>Explorar jogos ↗</small></a>
+      <a routerLink="/catalogo" [queryParams]="{platform:'Nintendo'}" class="platform-card nintendo"><span class="platform-symbol">▣</span><strong>Nintendo</strong><small>Explorar jogos ↗</small></a>
+      <a routerLink="/catalogo" [queryParams]="{platform:'PC'}" class="platform-card pc"><span class="platform-symbol">⌘</span><strong>PC Gaming</strong><small>Explorar jogos ↗</small></a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-heading"><div><span class="eyebrow">SELEÇÃO PIXEL STORE</span><h2>Jogos em destaque <span class="heading-star">✳</span></h2></div><a class="link-accent" routerLink="/catalogo">Ver todos os jogos ↗</a></div>
+    @if (loading) { <p class="loading-line">Carregando jogos em destaque...</p> }
+    @else if (error) { <div class="error-message">{{error}}</div> }
+    @else { <div class="game-grid">@for (game of featured; track game.id) { <app-game-card [game]="game"/> }</div> }
+  </section>
+  <section class="cta-banner"><div><span class="eyebrow">MAIS QUE UM CATÁLOGO</span><h2>Uma nova aventura a cada clique.</h2><p>Encontre a próxima história que você vai jogar.</p></div><a routerLink="/catalogo" class="btn btn-primary">Descobrir jogos ↗</a></section>
+</div>

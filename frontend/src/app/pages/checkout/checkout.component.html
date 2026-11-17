@@ -1,0 +1,26 @@
+<div class="site-width">
+  <div class="breadcrumb"><a routerLink="/home">Início</a> / <a routerLink="/carrinho">Carrinho</a> / <strong>Checkout</strong></div>
+  @if (loading) { <p class="loading-line" role="status">Verificando jogos e preços...</p> }
+  @if (!cartReady && error) { <p class="error-message" role="alert">{{error}}</p> }
+  @if (notice) { <p class="notice" role="status">{{notice}}</p> }
+  @if (completed) {
+    <div class="completion panel"><div class="completion-mark">✓</div><span class="eyebrow">PEDIDO SIMULADO REGISTRADO</span><h1>Pedido #{{completed.id}} confirmado!</h1><p>Registramos seu pedido no banco de dados do projeto. Esta etapa é apenas uma simulação: nenhuma cobrança ou entrega de chave digital foi realizada.</p><div class="completion-total">Total demonstrativo: <strong>{{completed.totalCents / 100 | currency:'BRL'}}</strong></div><div class="completion-actions"><a routerLink="/perfil" class="btn btn-primary">Ver meus pedidos →</a><a routerLink="/catalogo" class="btn btn-outline">Voltar ao catálogo</a></div></div>
+  } @else if (cart.count() === 0) {
+    <div class="empty-state"><div class="empty-icon">◈</div><h2>Não há jogos para finalizar</h2><p>Adicione um jogo ao carrinho antes de criar um pedido.</p><a routerLink="/catalogo" class="btn btn-primary">Ir ao catálogo</a></div>
+  } @else {
+    <div class="page-heading"><span class="eyebrow">ÚLTIMA ETAPA</span><h1>Finalizar pedido</h1><p>Revise as informações antes de confirmar sua simulação de compra.</p></div>
+    <div class="checkout-layout"><section class="checkout-main">
+      <div class="panel checkout-panel"><h3><span class="step-num">01</span> Seus dados</h3><p>Nome: <strong>{{auth.currentUser()?.name}}</strong></p><p>E-mail: <strong>{{auth.currentUser()?.email}}</strong></p></div>
+      <div class="panel checkout-panel"><h3><span class="step-num">02</span> Método demonstrativo</h3><p class="muted">Selecione uma opção. Não solicitaremos dados reais de pagamento.</p>
+        <button class="payment-option" type="button" [class.selected]="paymentMethod === 'pix'" (click)="select('pix')"><span class="payment-icon">◇</span><span><strong>Pix (simulação)</strong><small>Sem geração de QR Code ou transação</small></span><span class="radio-mark">{{paymentMethod === 'pix' ? '●' : '○'}}</span></button>
+        <button class="payment-option" type="button" [class.selected]="paymentMethod === 'cartao'" (click)="select('cartao')"><span class="payment-icon">▤</span><span><strong>Cartão (simulação)</strong><small>Nenhum dado de cartão será solicitado</small></span><span class="radio-mark">{{paymentMethod === 'cartao' ? '●' : '○'}}</span></button>
+      </div>
+      <div class="notice">ℹ️ Esta loja é um projeto acadêmico. A confirmação grava um pedido no banco SQLite, mas não efetua pagamentos reais.</div>
+    </section><aside class="summary-card panel"><h3>Seu pedido</h3><div class="divider"></div>
+      @for (item of cart.items(); track item.id) { <div class="summary-product"><span>{{item.title}} <small>{{item.platform}}</small></span><strong>{{item.priceCents / 100 | currency:'BRL'}}</strong></div> }
+      <div class="divider"></div><div class="summary-total"><span>Total</span><strong>{{cart.totalCents() / 100 | currency:'BRL'}}</strong></div>
+      @if (error) { <p class="error-message" role="alert">{{error}}</p> }
+      <button type="button" class="btn btn-primary confirm-btn" [disabled]="submitting || !cartReady" (click)="confirm()">{{submitting ? 'Confirmando...' : 'Confirmar pedido simulado →'}}</button><a routerLink="/carrinho" class="back-cart">← Voltar ao carrinho</a>
+    </aside></div>
+  }
+</div>

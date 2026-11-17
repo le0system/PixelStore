@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Logotipo Pixel Store">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c0aaff"/><stop offset="1" stop-color="#8059ef"/></linearGradient></defs>
+<rect width="64" height="64" rx="17" fill="url(#g)"/>
+<path d="M16 23 23 16h18l7 7v18l-7 7H23l-7-7z" fill="#161126" opacity=".94"/>
+<rect x="24" y="26" width="16" height="12" rx="4" fill="none" stroke="#dccbff" stroke-width="2.5"/>
+<path d="M27 32h7M30.5 28.5v7" stroke="#dccbff" stroke-width="2" stroke-linecap="round"/>
+<circle cx="36" cy="30" r="1.35" fill="#dccbff"/><circle cx="39" cy="33" r="1.35" fill="#dccbff"/>
+</svg>

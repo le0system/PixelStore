@@ -1,0 +1,14 @@
+<article class="game-card">
+  <a class="game-cover" [routerLink]="['/jogo', game.id]" [attr.aria-label]="'Ver detalhes de ' + game.title">
+    <img [src]="imageUrl(game.cover)" [alt]="'Arte ilustrativa de ' + game.title" loading="lazy">
+    <span class="platform-tag">{{game.platform}}</span>
+  </a>
+  <div class="game-body">
+    <span class="game-genre">{{game.genre}}</span>
+    <a class="game-title" [routerLink]="['/jogo', game.id]">{{game.title}}</a>
+    <div class="game-bottom">
+      <div class="price-block"><small>Por apenas</small><strong>{{game.priceCents / 100 | currency:'BRL'}}</strong></div>
+      <button class="quick-add" type="button" (click)="add()" [disabled]="!game.available" [attr.aria-label]="cart.has(game.id) ? 'Jogo já no carrinho' : 'Adicionar ' + game.title + ' ao carrinho'" [title]="cart.has(game.id) ? 'Já adicionado' : 'Adicionar ao carrinho'">{{!game.available ? '—' : cart.has(game.id) ? '✓' : '+'}}</button>
+    </div>
+  </div>
+</article>

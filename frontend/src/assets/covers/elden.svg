@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 780" width="680" height="780">
+ <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#292e2c"/><stop offset=".55" stop-color="#ad9854"/><stop offset="1" stop-color="#292e2c"/></linearGradient><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#080815" stop-opacity="0"/><stop offset="1" stop-color="#080815" stop-opacity=".96"/></linearGradient></defs>
+ <rect width="680" height="780" fill="url(#bg)"/><g><ellipse cx="340" cy="310" rx="130" ry="74" transform="rotate(-30 340 310)" stroke="#f5e4a2" fill="none" stroke-width="12" opacity=".75"/><ellipse cx="340" cy="310" rx="215" ry="122" transform="rotate(-30 340 310)" stroke="#f5e4a2" fill="none" stroke-width="4" opacity=".75"/><ellipse cx="340" cy="310" rx="290" ry="165" transform="rotate(-30 340 310)" stroke="#f5e4a2" fill="none" stroke-width="4" opacity=".75"/></g>
+ <path d="M0 700 120 620 270 680 450 590 680 650V780H0Z" fill="#292e2c" opacity=".36"/>
+ <rect x="0" y="440" width="680" height="340" fill="url(#fade)"/>
+ <text x="40" y="53" font-family="Arial,sans-serif" fill="#fff" font-weight="800" font-size="17" letter-spacing="5" opacity=".75">PIXEL STORE</text>
+ <rect x="38" y="598" width="65" height="5" rx="2" fill="#f5e4a2"/>
+ <text x="38" y="661" font-family="Arial, sans-serif" font-weight="900" font-size="47" letter-spacing="1" fill="#fff">ELDEN</text>
+ <text x="40" y="706" font-family="Arial,sans-serif" font-weight="700" font-size="32" letter-spacing="2" fill="#f5e4a2">RING</text>
+ <text x="40" y="754" font-family="Arial,sans-serif" font-size="12" fill="#eee" letter-spacing="2" opacity=".7">ARTE ILUSTRATIVA • DEMONSTRAÇÃO</text></svg>

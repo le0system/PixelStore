@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 780" width="680" height="780">
+ <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7f254a"/><stop offset=".55" stop-color="#f47758"/><stop offset="1" stop-color="#7f254a"/></linearGradient><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#080815" stop-opacity="0"/><stop offset="1" stop-color="#080815" stop-opacity=".96"/></linearGradient></defs>
+ <rect width="680" height="780" fill="url(#bg)"/><g><rect x="125" y="170" width="130" height="130" rx="12" fill="#ffde82" opacity="0.7" transform="rotate(12 125 170)"/><rect x="400" y="120" width="145" height="145" rx="12" fill="#ffde82" opacity="0.9" transform="rotate(-10 400 120)"/><rect x="225" y="380" width="160" height="160" rx="12" fill="#ffde82" opacity="0.4" transform="rotate(8 225 380)"/><rect x="510" y="340" width="80" height="80" rx="12" fill="#ffde82" opacity="0.6" transform="rotate(35 510 340)"/></g>
+ <path d="M0 700 120 620 270 680 450 590 680 650V780H0Z" fill="#7f254a" opacity=".36"/>
+ <rect x="0" y="440" width="680" height="340" fill="url(#fade)"/>
+ <text x="40" y="53" font-family="Arial,sans-serif" fill="#fff" font-weight="800" font-size="17" letter-spacing="5" opacity=".75">PIXEL STORE</text>
+ <rect x="38" y="598" width="65" height="5" rx="2" fill="#ffde82"/>
+ <text x="38" y="661" font-family="Arial, sans-serif" font-weight="900" font-size="47" letter-spacing="1" fill="#fff">SUPER MARIO</text>
+ <text x="40" y="706" font-family="Arial,sans-serif" font-weight="700" font-size="32" letter-spacing="2" fill="#ffde82">ODYSSEY</text>
+ <text x="40" y="754" font-family="Arial,sans-serif" font-size="12" fill="#eee" letter-spacing="2" opacity=".7">ARTE ILUSTRATIVA • DEMONSTRAÇÃO</text></svg>

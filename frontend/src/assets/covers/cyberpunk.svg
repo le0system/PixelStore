@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 780" width="680" height="780">
+ <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#37383b"/><stop offset=".55" stop-color="#e5e259"/><stop offset="1" stop-color="#37383b"/></linearGradient><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#080815" stop-opacity="0"/><stop offset="1" stop-color="#080815" stop-opacity=".96"/></linearGradient></defs>
+ <rect width="680" height="780" fill="url(#bg)"/><g><rect x="20" y="270" width="110" height="350" fill="#37383b" opacity=".8"/><path d="M25 300h95 M25 340h95" stroke="#f5f6a4" stroke-width="6" opacity=".7"/><rect x="160" y="180" width="130" height="440" fill="#37383b" opacity=".8"/><path d="M165 210h115 M165 250h115" stroke="#f5f6a4" stroke-width="6" opacity=".7"/><rect x="325" y="70" width="100" height="550" fill="#37383b" opacity=".8"/><path d="M330 100h85 M330 140h85" stroke="#f5f6a4" stroke-width="6" opacity=".7"/><rect x="455" y="200" width="115" height="420" fill="#37383b" opacity=".8"/><path d="M460 230h100 M460 270h100" stroke="#f5f6a4" stroke-width="6" opacity=".7"/><rect x="590" y="120" width="95" height="500" fill="#37383b" opacity=".8"/><path d="M595 150h80 M595 190h80" stroke="#f5f6a4" stroke-width="6" opacity=".7"/></g>
+ <path d="M0 700 120 620 270 680 450 590 680 650V780H0Z" fill="#37383b" opacity=".36"/>
+ <rect x="0" y="440" width="680" height="340" fill="url(#fade)"/>
+ <text x="40" y="53" font-family="Arial,sans-serif" fill="#fff" font-weight="800" font-size="17" letter-spacing="5" opacity=".75">PIXEL STORE</text>
+ <rect x="38" y="598" width="65" height="5" rx="2" fill="#f5f6a4"/>
+ <text x="38" y="661" font-family="Arial, sans-serif" font-weight="900" font-size="47" letter-spacing="1" fill="#fff">CYBERPUNK</text>
+ <text x="40" y="706" font-family="Arial,sans-serif" font-weight="700" font-size="32" letter-spacing="2" fill="#f5f6a4">2077</text>
+ <text x="40" y="754" font-family="Arial,sans-serif" font-size="12" fill="#eee" letter-spacing="2" opacity=".7">ARTE ILUSTRATIVA • DEMONSTRAÇÃO</text></svg>

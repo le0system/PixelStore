@@ -1,0 +1,12 @@
+<div class="site-width">
+  <div class="breadcrumb"><a routerLink="/home">Início</a> / <strong>Meu perfil</strong></div>
+  <div class="page-heading"><span class="eyebrow">ÁREA DO JOGADOR</span><h1>Minha conta</h1><p>Acompanhe seus dados e histórico de pedidos demonstrativos.</p></div>
+  <div class="profile-layout"><aside class="profile-card panel"><div class="profile-avatar">{{(auth.currentUser()?.name || 'J').charAt(0).toUpperCase()}}</div><h2>{{auth.currentUser()?.name || 'Jogador'}}</h2><p class="muted">{{auth.currentUser()?.email}}</p><span class="pill">MEMBRO PIXEL STORE</span><div class="divider"></div><h3>Minha conta</h3><p>Seus dados são armazenados no banco de dados local.</p><button class="logout-btn" type="button" (click)="logout()">Sair da conta ↗</button></aside>
+    <section class="orders-section"><div class="orders-title"><div><span class="eyebrow">HISTÓRICO</span><h2>Meus pedidos</h2></div><span class="pill">{{orders.length}} pedido(s)</span></div>
+      @if (loading) { <p class="loading-line">Carregando seus pedidos...</p> }
+      @else if (error) { <div class="error-message">{{error}}</div> }
+      @else if (!orders.length) { <div class="empty-state"><div class="empty-icon">▧</div><h2>Nenhum pedido ainda</h2><p>Quando você finalizar um pedido simulado, ele aparecerá aqui.</p><a routerLink="/catalogo" class="btn btn-primary">Explorar catálogo →</a></div> }
+      @else { @for (order of orders; track order.id) { <article class="order-card panel"><div class="order-card-header"><div><strong>Pedido #{{order.id}}</strong><p>{{order.createdAt.replace(' ', 'T') + 'Z' | date:'dd/MM/yyyy HH:mm'}}</p></div><span class="status-pill">✓ {{order.status}}</span></div><div class="order-games">@for (item of order.items; track $index) { <div class="order-item"><span>{{item.title}} <small>{{item.platform}}</small></span><strong>{{item.priceCents / 100 | currency:'BRL'}}</strong></div> }</div><div class="order-bottom"><span>Pagamento: {{order.paymentMethod === 'pix' ? 'Pix (simulado)' : 'Cartão (simulado)'}}</span><strong>Total {{order.totalCents / 100 | currency:'BRL'}}</strong></div></article> } }
+    </section>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="topline"><div class="site-width topline-inner"><span>Projeto acadêmico • Grupo 13</span><span>Jogos digitais para todas as plataformas</span></div></div>
+<header class="site-header">
+  <div class="site-width header-inner">
+    <a routerLink="/home" class="brand" (click)="closeMenu()" aria-label="Pixel Store — página inicial">
+      <img src="assets/logo.svg" alt="" width="36" height="36">
+      <span>PIXEL<span class="brand-accent">STORE</span></span>
+    </a>
+    <button class="hamburger" type="button" [attr.aria-expanded]="menuOpen" aria-label="Abrir menu" (click)="menuOpen = !menuOpen">☰</button>
+    <nav class="main-nav" [class.open]="menuOpen" aria-label="Menu principal">
+      @if (auth.currentUser()?.role === 'admin') { <a routerLink="/admin" routerLinkActive="active" (click)="closeMenu()">Administração</a> }
+      <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Início</a>
+      <a routerLink="/catalogo" routerLinkActive="active" (click)="closeMenu()">Catálogo</a>
+      <a routerLink="/catalogo" [queryParams]="{platform: 'PC'}" (click)="closeMenu()">PC</a>
+      <a routerLink="/catalogo" [queryParams]="{platform: 'PlayStation'}" (click)="closeMenu()">Consoles</a>
+    </nav>
+    <form class="header-search" (ngSubmit)="search()" role="search">
+      <span aria-hidden="true">⌕</span>
+      <input name="q" [(ngModel)]="query" type="search" placeholder="Buscar jogos..." aria-label="Pesquisar jogos">
+      <button type="submit" aria-label="Buscar">→</button>
+    </form>
+    <div class="header-actions">
+      <a class="icon-link cart-link" routerLink="/carrinho" aria-label="Carrinho de compras">
+        <span aria-hidden="true">▧</span><span class="count-bubble">{{cart.count()}}</span>
+      </a>
+      @if (auth.currentUser()) {
+        <a routerLink="/perfil" class="profile-pill" aria-label="Meu perfil"><span class="avatar-dot">●</span> {{auth.currentUser()?.name?.split(' ')?.[0]}}</a>
+      } @else {
+        <a routerLink="/login" class="profile-pill">Entrar <span aria-hidden="true">↗</span></a>
+      }
+    </div>
+  </div>
+</header>

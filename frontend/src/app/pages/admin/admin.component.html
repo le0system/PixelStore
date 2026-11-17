@@ -1,0 +1,53 @@
+<div class="site-width">
+  <div class="page-heading"><span class="eyebrow">PIXEL STORE</span><h1>Administração</h1><p>Gerencie o catálogo e acompanhe os pedidos da loja.</p></div>
+  <nav class="admin-nav" aria-label="Navegação administrativa">
+    <a class="btn btn-muted" routerLink="/admin" [class.selected]="section === 'painel'">Painel</a>
+    <a class="btn btn-muted" routerLink="/admin" [queryParams]="{area:'jogos'}" [class.selected]="section === 'jogos'">Jogos</a>
+    <a class="btn btn-muted" routerLink="/admin" [queryParams]="{area:'pedidos'}" [class.selected]="section === 'pedidos'">Pedidos</a>
+    <a class="btn btn-outline" routerLink="/home">← Retornar à loja</a>
+  </nav>
+  @if (error) { <p class="error-message" role="alert">{{error}}</p> }
+  @if (success) { <p class="success-message" role="status">{{success}}</p> }
+  @if (loading) { <p class="loading-line" role="status">Carregando dados...</p> }
+  @else if (section === 'jogos') {
+    <div class="toolbar">
+      <form (ngSubmit)="load()" class="filters">
+        <label>Pesquisar por nome<input class="input-field" type="search" name="q" [(ngModel)]="q"></label>
+        <label>Plataforma<select class="input-field" name="platform" [(ngModel)]="platform"><option value="">Todas</option>@for (p of platforms; track p) { <option [value]="p">{{p}}</option> }</select></label>
+        <button class="btn btn-muted" type="submit">Pesquisar</button>
+      </form>
+      <button class="btn btn-primary" type="button" (click)="edit()" [disabled]="busy">＋ Cadastrar jogo</button>
+    </div>
+    @if (formOpen) {
+      <section class="panel editor"><h2>{{editingId === null ? 'Cadastrar jogo' : 'Editar jogo'}}</h2>
+        <form #gameForm="ngForm" (ngSubmit)="save()">
+          <fieldset [disabled]="busy"><div class="form-grid">
+            <label class="field-label">Nome<input class="input-field" name="title" [(ngModel)]="form.title" required maxlength="200"></label>
+            <label class="field-label">Plataforma<select class="input-field" name="gamePlatform" [(ngModel)]="form.platform" required>@for (p of platforms; track p) { <option [value]="p">{{p}}</option> }</select></label>
+            <label class="field-label">Categoria / gênero<input class="input-field" name="genre" [(ngModel)]="form.genre" required maxlength="100"></label>
+            <label class="field-label">Preço (R$)<input class="input-field" name="price" type="number" [(ngModel)]="price" min="0" max="1000000" step="0.01" required></label>
+            <label class="field-label">Imagem (URL ou caminho)<input class="input-field" name="cover" [(ngModel)]="form.cover" required maxlength="2000" placeholder="assets/covers/zelda.svg"><small class="field-hint">URL HTTP(S), caminho local ou nome de arquivo em assets/covers.</small></label>
+            <label class="field-label">Ano de lançamento<input class="input-field" name="year" type="number" [(ngModel)]="form.releaseYear" min="1970" max="2100" required></label>
+            <label class="field-label wide">Descrição<textarea class="input-field" name="description" [(ngModel)]="form.description" required maxlength="10000" rows="4"></textarea></label>
+            <label><input type="checkbox" name="available" [(ngModel)]="form.available"> Disponível para compra</label>
+            <label><input type="checkbox" name="featured" [(ngModel)]="form.featured"> Exibir em destaque</label>
+          </div><div class="actions"><button class="btn btn-primary" type="submit" [disabled]="gameForm.invalid || busy">{{busy ? 'Salvando...' : 'Salvar jogo'}}</button><button class="btn btn-outline" type="button" (click)="formOpen = false">Cancelar</button></div></fieldset>
+        </form>
+      </section>
+    }
+    <div class="table-wrap panel"><table><caption>Jogos cadastrados ({{games.length}})</caption><thead><tr><th>ID</th><th>Imagem</th><th>Nome</th><th>Plataforma</th><th>Preço</th><th>Disponibilidade</th><th>Ações</th></tr></thead><tbody>
+      @for (game of games; track game.id) { <tr><td>{{game.id}}</td><td><img class="cover" [src]="imageUrl(game.cover)" [alt]="game.title"></td><td>{{game.title}}</td><td>{{game.platform}}</td><td class="nowrap">{{game.priceCents / 100 | currency:'BRL'}}</td><td>{{game.available ? 'Disponível' : 'Indisponível'}}</td><td><div class="actions"><button class="btn btn-muted" type="button" (click)="edit(game)" [disabled]="busy" [attr.aria-label]="'Editar ' + game.title">Editar</button><button class="btn btn-outline danger" type="button" (click)="remove(game)" [disabled]="busy" [attr.aria-label]="'Excluir ' + game.title">Excluir</button></div></td></tr> }
+      @empty { <tr><td colspan="7">Nenhum jogo encontrado.</td></tr> }
+    </tbody></table></div>
+  } @else if (section === 'pedidos') {
+    <h2>Pedidos</h2><p class="muted">Histórico com os valores registrados na compra. Pagamentos simulados.</p>
+    @for (order of orders; track order.id) {
+      <article class="panel order"><h3>Pedido #{{order.id}} · Cliente #{{order.userId}}</h3><p class="muted">{{order.createdAt.replace(' ', 'T') + 'Z' | date:'dd/MM/yyyy HH:mm'}} · {{order.paymentMethod}} · {{order.status}}</p>
+        <ul>@for (item of order.items; track $index) { <li>{{item.title}} · {{item.platform}} — {{item.priceCents / 100 | currency:'BRL'}}</li> }</ul><strong>Total: {{order.totalCents / 100 | currency:'BRL'}}</strong>
+      </article>
+    } @empty { <p class="empty-state">Nenhum pedido registrado.</p> }
+  } @else if (stats) {
+    <div class="stats"><article class="panel"><span>Jogos cadastrados</span><strong>{{stats.games}}</strong></article><article class="panel"><span>Usuários</span><strong>{{stats.users}}</strong></article><article class="panel"><span>Pedidos</span><strong>{{stats.orders}}</strong></article></div>
+    <div class="actions dashboard-actions"><a class="btn btn-primary" routerLink="/admin" [queryParams]="{area:'jogos'}">Gerenciar jogos →</a><a class="btn btn-outline" routerLink="/admin" [queryParams]="{area:'pedidos'}">Visualizar pedidos →</a></div>
+  }
+</div>

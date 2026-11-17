@@ -1,0 +1,18 @@
+<div class="site-width">
+  <div class="breadcrumb"><a routerLink="/home">Início</a> / <a routerLink="/catalogo">Catálogo</a> / <strong>{{game?.title || 'Detalhes'}}</strong></div>
+  @if (loading) { <p class="loading-line">Carregando detalhes...</p> }
+  @else if (error || !game) { <div class="empty-state"><h2>Não foi possível encontrar o jogo</h2><p>{{error}}</p><a routerLink="/catalogo" class="btn btn-primary">Voltar ao catálogo</a></div> }
+  @else { <div class="detail-layout">
+    <div class="detail-art panel"><img [src]="imageUrl(game.cover)" [alt]="'Arte ilustrativa do jogo ' + game.title"><span class="art-note">Arte conceitual ilustrativa</span></div>
+    <div class="detail-information">
+      <div class="detail-label"><span class="pill">{{game.platform}}</span><span class="game-year">Lançamento: {{game.releaseYear}}</span></div>
+      <h1>{{game.title}}</h1>
+      <p class="genre">{{game.genre}} • Jogo digital</p>
+      <div class="divider"></div>
+      <h3>Sobre este jogo</h3><p class="description">{{game.description}}</p>
+      <div class="detail-chips"><span>✓ Versão digital</span><span>✓ {{game.platform}}</span><span>✓ Catálogo demonstrativo</span></div>
+      <div class="buy-panel panel"><small>Preço demonstrativo</small><div class="big-price">{{game.priceCents / 100 | currency:'BRL'}}</div><p>Pagamento somente simulado. Nenhuma chave ou licença real é entregue.</p><button type="button" class="btn btn-primary buy-button" (click)="add()" [disabled]="!game.available">{{!game.available ? 'Indisponível' : cart.has(game.id) ? 'Ver no carrinho →' : '＋ Adicionar ao carrinho'}}</button><span class="small-note">Você poderá revisar seu pedido antes de confirmar.</span></div>
+    </div>
+  </div> }
+  <div class="back-row"><a routerLink="/catalogo" class="link-accent">← Continuar explorando jogos</a></div>
+</div>

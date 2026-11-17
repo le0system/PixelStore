@@ -1,0 +1,16 @@
+{
+  "name": "pixelstore-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API acad\u00eamica Pixel Store: Node.js nativo + SQLite",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test test/*.test.js",
+    "create-admin": "node scripts/create-admin.js"
+  }
+}

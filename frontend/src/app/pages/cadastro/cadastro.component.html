@@ -1,0 +1,15 @@
+<div class="auth-wrap site-width">
+  <section class="auth-side"><div class="side-symbol">✳</div><span class="eyebrow">COMECE SUA HISTÓRIA</span><h1>Pronto para a próxima fase?</h1><p>Crie sua conta e comece a montar sua biblioteca de jogos favoritos.</p><div class="side-pills"><span>Explore</span><span>Descubra</span><span>Jogue</span></div></section>
+  <div class="auth-card panel"><div class="auth-brand"><img src="assets/logo.svg" alt="" width="40" height="40"><strong>PIXEL<span>STORE</span></strong></div><span class="eyebrow">CRIAR CONTA</span><h2>Faça parte da Pixel Store</h2><p class="muted intro">Leva só um minuto para começar.</p>
+    @if (error) { <p class="error-message" role="alert">{{error}}</p> }
+    <form (ngSubmit)="submit()" #registerForm="ngForm">
+      <label class="field-label">Nome completo<input class="input-field" type="text" name="name" [(ngModel)]="name" minlength="2" maxlength="100" autocomplete="name" required placeholder="Seu nome"></label>
+      <label class="field-label">E-mail<input class="input-field" type="email" name="email" [(ngModel)]="email" email autocomplete="email" required placeholder="seuemail@exemplo.com"></label>
+      <label class="field-label">Senha<input class="input-field" type="password" name="password" [(ngModel)]="password" minlength="6" autocomplete="new-password" required placeholder="Pelo menos 6 caracteres"></label>
+      <label class="field-label">Confirme sua senha<input class="input-field" type="password" name="confirm" [(ngModel)]="confirmPassword" required autocomplete="new-password" placeholder="Repita a senha"></label>
+      <button class="btn btn-primary submit-btn" type="submit" [disabled]="registerForm.invalid || busy">{{busy ? 'Criando conta...' : 'Criar minha conta →'}}</button>
+    </form>
+    <p class="auth-switch">Já tem uma conta? <a routerLink="/login" class="link-accent">Fazer login</a></p>
+    <div class="auth-note">Os dados são armazenados no banco SQLite local do projeto.</div>
+  </div>
+</div>
