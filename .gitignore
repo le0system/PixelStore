@@ -1,27 +1,30 @@
-# dependências e builds
+# Dependências
 node_modules/
-.angular/
-dist/
-coverage/
-*.log
-.DS_Store
-# banco de dados local: gerado ao iniciar a API
-backend/data/*.sqlite
-backend/data/*.sqlite-shm
-backend/data/*.sqlite-wal
-# arquivos de ambiente e IDE
-.env
-.idea/
-.vscode/*
-!.vscode/extensions.json
+**/node_modules/
 
-node_modules/
+# Angular
 dist/
 .angular/
+
+# Variáveis de ambiente
 .env
 .env.*
 !.env.example
+
+# Banco de dados SQLite
 *.db
 *.db-*
 *.sqlite
 *.sqlite3
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
