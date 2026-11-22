@@ -26,7 +26,7 @@
             <label class="field-label">Plataforma<select class="input-field" name="gamePlatform" [(ngModel)]="form.platform" required>@for (p of platforms; track p) { <option [value]="p">{{p}}</option> }</select></label>
             <label class="field-label">Categoria / gênero<input class="input-field" name="genre" [(ngModel)]="form.genre" required maxlength="100"></label>
             <label class="field-label">Preço (R$)<input class="input-field" name="price" type="number" [(ngModel)]="price" min="0" max="1000000" step="0.01" required></label>
-            <label class="field-label">Imagem (URL ou caminho)<input class="input-field" name="cover" [(ngModel)]="form.cover" required maxlength="2000" placeholder="assets/covers/zelda.svg"><small class="field-hint">URL HTTP(S), caminho local ou nome de arquivo em assets/covers.</small></label>
+            <label class="field-label">Imagem (URL ou caminho)<input class="input-field" name="cover" [(ngModel)]="form.cover" required maxlength="2000" placeholder="assets/covers/zelda.jpg"><small class="field-hint">URL HTTP(S), caminho local ou nome de arquivo em assets/covers.</small></label>
             <label class="field-label">Ano de lançamento<input class="input-field" name="year" type="number" [(ngModel)]="form.releaseYear" min="1970" max="2100" required></label>
             <label class="field-label wide">Descrição<textarea class="input-field" name="description" [(ngModel)]="form.description" required maxlength="10000" rows="4"></textarea></label>
             <label><input type="checkbox" name="available" [(ngModel)]="form.available"> Disponível para compra</label>
