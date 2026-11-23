@@ -3,7 +3,7 @@
   @if (loading) { <p class="loading-line">Carregando detalhes...</p> }
   @else if (error || !game) { <div class="empty-state"><h2>Não foi possível encontrar o jogo</h2><p>{{error}}</p><a routerLink="/catalogo" class="btn btn-primary">Voltar ao catálogo</a></div> }
   @else { <div class="detail-layout">
-    <div class="detail-art panel"><img [src]="imageUrl(game.cover)" [alt]="'Arte ilustrativa do jogo ' + game.title"><span class="art-note">Arte conceitual ilustrativa</span></div>
+    <div class="detail-art panel"><img [src]="imageUrl(game.cover)" [alt]="'Capa de ' + game.title"></div>
     <div class="detail-information">
       <div class="detail-label"><span class="pill">{{game.platform}}</span><span class="game-year">Lançamento: {{game.releaseYear}}</span></div>
       <h1>{{game.title}}</h1>

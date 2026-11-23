@@ -11,7 +11,11 @@
 
 E-commerce **acadêmico e demonstrativo** de jogos digitais para **PlayStation, Xbox, Nintendo e PC**. Esta versão transforma os oito wireframes da ficha de prototipagem em uma aplicação funcional usando Angular e uma API Node.js com persistência SQLite.
 
-**IMPORTANTE:** Os preços do catálogo são fictícios. A finalização de pedido salva apenas um registro **simulado**; não existe cobrança, integração com meio de pagamento, entrega de chave digital ou uso de imagens oficiais dos jogos. As capas são artes abstratas originais, apenas ilustrativas.
+**IMPORTANTE:** Os preços do catálogo são fictícios. A finalização de pedido salva apenas um registro **simulado**, sem cobrança, integração com meios de pagamento ou entrega de chaves digitais.
+
+### Capas dos jogos
+
+As capas fornecidas para a demonstração acadêmica ficam em `frontend/src/assets/games/`. O catálogo inicial referencia esses arquivos no campo `cover` de `backend/data/jogos.json`.
 
 ## Funcionalidades
 

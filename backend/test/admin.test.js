@@ -103,6 +103,43 @@ test('CRUD e catálogo vazio persistem após reinício; administrador não promo
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
+test('atualiza capas antigas dos jogos existentes sem sobrescrever personalizações', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'pixel-capas-'));
+  const filename = join(dir, 'db.sqlite');
+  const options = { environment: 'test' };
+  try {
+    const initial = new Database(filename, options);
+    initial.db.exec(`
+      DELETE FROM app_meta WHERE key = 'catalog_covers_webp';
+      UPDATE games SET cover = 'horizon.svg', price_cents = 9900 WHERE id = 1;
+      UPDATE games SET cover = 'assets/covers/spider.svg' WHERE id = 3;
+      UPDATE games SET cover = 'assets/games/ori-and-the-will-of-the-wisps.jpg' WHERE id = 8;
+      UPDATE games SET cover = 'assets/games/super-mario-odyssey.avif' WHERE id = 9;
+      UPDATE games SET cover = 'assets/covers/minha-capa.png' WHERE id = 10;
+      DELETE FROM games WHERE id = 11;
+    `);
+    initial.close();
+
+    const migrated = new Database(filename, options);
+    try {
+      const games = new GameRepository(migrated);
+      assert.equal(games.find(1).cover, 'assets/games/horizon-forbidden-west.webp');
+      assert.equal(games.find(1).priceCents, 9900);
+      assert.equal(games.find(3).cover, 'assets/games/spider-man-2.webp');
+      assert.equal(games.find(8).cover, 'assets/games/ori.webp');
+      assert.equal(games.find(9).cover, 'assets/games/Super-Mario-Odyssey.webp');
+      assert.equal(games.find(10).cover, 'assets/covers/minha-capa.png');
+      assert.equal(games.list().some(item => item.id === 11), false);
+      migrated.db.exec("UPDATE games SET cover = 'horizon.svg' WHERE id = 1");
+    } finally { migrated.close(); }
+
+    const restarted = new Database(filename, options);
+    try {
+      assert.equal(new GameRepository(restarted).find(1).cover, 'horizon.svg');
+    } finally { restarted.close(); }
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
 test('migração de banco legado preserva usuários, sessões e pedidos', () => {
   const dir = mkdtempSync(join(tmpdir(), 'pixel-legacy-'));
   const filename = join(dir, 'db.sqlite');

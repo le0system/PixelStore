@@ -1,6 +1,6 @@
 <article class="game-card">
   <a class="game-cover" [routerLink]="['/jogo', game.id]" [attr.aria-label]="'Ver detalhes de ' + game.title">
-    <img [src]="imageUrl(game.cover)" [alt]="'Arte ilustrativa de ' + game.title" loading="lazy">
+    <img [src]="imageUrl(game.cover)" [alt]="'Capa de ' + game.title" loading="lazy">
     <span class="platform-tag">{{game.platform}}</span>
   </a>
   <div class="game-body">
